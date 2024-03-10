@@ -222,7 +222,7 @@
     После завершения игры должно выводиться модальное окно с итогами
   prerequisites: |
   Под авторизованным пользователем создана игра
-  Level: 1
+    Level: 1
     Game type: With a bot
     Choose task: rect_area
     Editor: const _ = require("lodash"); const R = require("rambda");const solution = (width, length) => { return width * length;};module.exports = solution;
