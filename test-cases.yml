@@ -224,9 +224,8 @@
     Под авторизованным пользователем создана игра с параметрами Level: 1
     Game type: With a bot
     Choose task: rect_area
-    Editor: const _ = require("lodash"); const R = require("rambda");const solution = (width, length) => { return width * length;};module.exports = solution;
   test-data: |
-    no-data
+    Editor: const _ = require("lodash"); const R = require("rambda");const solution = (width, length) => { return width * length;};module.exports = solution;
   steps:
     - В области редактора кода ввести решение
     - Нажать кнопку Run
