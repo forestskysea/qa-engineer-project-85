@@ -6,48 +6,238 @@
   prerequisites: |
     no-data
   test-data: |
-    no-data
+    Nickname: Kkkljjjtt
+    Email: test@test.test
+    Password: 123456
+    Password Confirmation: 123456
   steps:
     - На главной странице без авторизации нажать кнопку Sign up
-    - Заполнить поле Nickname значением от 3 до 16 символов на латинице без спец.символов, например, Kkkljjjtt
-    - Заполнить поле Email в валидном формате, например, test@test.test
-    - В поле Password указать от 6 до 16 любых символов, например, 123456
+    - Заполнить поле Nickname
+    - Заполнить поле Email 
+    - Заполнить поле Password 
     - В поле Password Confirmation продублировать пароль из поля Password
     - Нажать кнопку Submit
   expected-result: |
-    После регистрации осуществляется переход на главную страницу сайта
+    Произошел переход на сайт под зарегистрированным пользователем
 
 - summary: |
-   !!!!!!!!!!!!!Проверка входа пользователя с существующими логином и паролем
+   Проверка входа пользователя с существующими логином и паролем
   requirement: |
     Сайт должен иметь возможность авторизации и регистрации
   prerequisites: |
-    Это условия, которые необходимы для проведения тест-кейса. Они должны быть выполнены еще до запуска тест-кейса.
-    Например: открыта страница логина
-  test-data: |
-    Тестовые данные
-    Логин = ilona Пароль = password
+    Открыта страница авторизации https://codebattle.hexlet.io/session/new?locale=en&next=%2F
+   test-data: |
+    Email: test@test.test
+    Password: 123456
   steps:
-    - Вводим логин
-    - Вводим пароль
-    - Нажимаем кнопку «Войти»
+    - Запольнить поле Email
+    - Заполнить поле пароль
+    - Нажать кнопку «Submit»
   expected-result: |
     Пользователь должен попасть на главную страницу
 
 
 - summary: |
-    Проверка входа пользователя с существующими логином и паролем
+    Проверка входа пользователя с несуществующими email
   requirement: |
     Сайт должен иметь возможность авторизации и регистрации
   prerequisites:
-    Открыта главная страница без авторизации
+    Открыта страница авторизации https://codebattle.hexlet.io/session/new?locale=en&next=%2F
   test-data: |
-    Логин = Логин = test@test.test Пароль = 123456
+    Email test@teeeeeesttest.kdsugflgkuwglfkj Пароль = 123456
   steps:
-    - На главной странице сайта нажать кнопку Sign in
-    - В поле Email ввести существующий email
-    - В поле Password ввести правильный пароль
+    - Запольнить поле Email
+    - Заполнить поле пароль
+    - Нажать кнопку «Submit»
+  expected-result: |
+    Вход на сайт не осуществляется, выводится сообщение об ошибке EMAIL_NOT_FOUND
+
+- summary: |
+    Проверка валидации поля Nickname при регистрации
+  requirement: |
+    Сайт должен иметь возможность авторизации и регистрации
+  prerequisites: |
+    no-data
+  test-data: |
+    Nickname: Kkkljjjtt)
+    Email: test@test.test
+    Password: 123456
+    Password Confirmation: 123456
+  steps:
+    - На главной странице без авторизации нажать кнопку Sign up
+    - Заполнить поле Nickname
+    - Заполнить поле Email 
+    - Заполнить поле Password 
+    - В поле Password Confirmation продублировать пароль из поля Password
     - Нажать кнопку Submit
   expected-result: |
-    Пользователь должен попасть на главную страницу сайта
- 
+    Произошел переход на сайт под зарегистрированным пользователем
+
+- summary: |
+    Проверка регистрации пользователя через Github
+  requirement: |
+    Сайт должен иметь возможность авторизации и регистрации через Github и Discord
+  prerequisites: |
+    Выполнен вход в Github
+  test-data: |
+    no-data
+  steps:
+    - На главной странице без авторизации нажать кнопку Sign up или Sign in
+    - Нажать кнопку Sign in with Github
+  expected-result: |
+    Произошел переход на сайт под зарегистрированным пользователем
+
+- summary: |
+    Проверка регистрации пользователя через Discord
+  requirement: |
+    Сайт должен иметь возможность авторизации и регистрации через Github и Discord
+  prerequisites: |
+    Выполнен вход в Discord
+  test-data: |
+    no-data
+  steps:
+    - На главной странице без авторизации нажать кнопку Sign up или Sign in
+    - Нажать кнопку Sign in with Discord
+    - Нажать кнопку Авторизовать
+  expected-result: |
+    Произошел переход на сайт под зарегистрированным пользователем
+
+- summary: |
+    Проверка создания игр без регистрации
+  requirement: |
+    На сайте должна быть возможность создавать игры без регистрации
+  prerequisites: |
+  test-data: |
+    no-data
+  steps:
+    - На главной странице без авторизации нажать кнопку Try simple battle
+  expected-result: |
+    Произошел переход на страницу с игрой
+
+- summary: |
+    Проверка создания игры под авторизованным пользователем
+  requirement: |
+    На сайте должна быть возможность создавать игру
+  prerequisites: |
+  На сайте выполнена авторизация
+  test-data: |
+    no-data
+  steps:
+    - На главной странице нажать кнопку Create a Game
+    - Выбрать любой Level
+    - В поле Game Type выбрать With a bot
+    - В поле Time control выбрать любое время, например, 10 минут
+    - В поле Choose task by name or tags выбрать любое значение, например, add_two_number
+    - Нажать кнопку Create Battle
+  expected-result: |
+    Создается игра с заданными параметрами
+
+- summary: |
+    Проверка удаления созданной игры
+  requirement: |
+    На сайте должна быть возможность удалять созданную игру
+  prerequisites: |
+  Под авторизованным пользователем создана игра
+  test-data: |
+    no-data
+  steps:
+    - На странице https://codebattle.hexlet.io/#lobby открыть вкладку Lobby 
+    - В строке с созданной игрой нажать на пиктограмму Cancel game
+  expected-result: |
+    Строка с созданной игрой исчезает с вкладки Lobby
+
+- summary: |
+    Проверка изменения никнейма пользователя
+  requirement: |
+    На сайте можно редактировать свой профиль
+  prerequisites: |
+  На сайте выполнена авторизация
+  test-data: |
+    no-data
+  steps:
+    - В шапке сайта нажать в область никнейма пользователя
+    - В меню выбрать Settings
+    - Изменить значение в поле никнейм, например, fgdggfdgd
+    - Нажать кнопку Save
+    - Обновить страницу
+  expected-result: |
+    Имя пользователя было согласно введенному запросу
+
+- summary: |
+    Проверка просмотра статистики по играм
+  requirement: |
+    На сайте можно просматривать свою статистику по играм
+  prerequisites: |
+  На сайте выполнена авторизация
+  test-data: |
+    no-data
+  steps:
+    - В шапке сайта нажать в область никнейма пользователя
+    - В меню выбрать My profile
+  expected-result: |
+    Открывается сраница со статистикой по играм 
+
+- summary: |
+    Проверка функционала кнопки Run в игре с верным решением
+  requirement: |
+    Каждый игрок должен иметь возможность проверки своего решения
+  prerequisites: |
+  На сайте выполнена авторизация
+  test-data: |
+    Level: 1
+    Game type: With a bot
+    Choose task: rect_area
+    Editor: const _ = require("lodash"); const R = require("rambda");
+const solution = (width, length) => { return width * length;
+};module.exports = solution;
+  steps:
+    - На главной странице нажать кнопку Create a game
+    - Заполить поле Level 
+    - Заполить поле Game type 
+    - Заполить поле Choose task
+    - Нажать кнопку Create battle
+    - В области редактора кода ввести код
+    - Нажать на кнопку Run
+    - Закрыть модальное окно с сообщением о победе
+    - Открыть вкладку Output
+  expected-result: |
+    На вкладке Output отображается сообщение "Yay! All tests passed!!111" с разультатами проверки
+
+- summary: |
+    Проверка повторного подключения к игре
+  requirement: |
+    К игре можно переподключиться в случае вылета, если она не закончена
+  prerequisites: |
+  Под авторизованным пользователем создана игра и добавлены участники
+  test-data: |
+    no-data
+  steps:
+    - Внести изменения в Editor под одним из участников
+    - Под одним из игроков закрыть вкладку с игрой
+    - Открыть главную страницу и на вкладке Lobby в поле с созданной игрой нажать кнопку Continue
+  expected-result: |
+    Откроется игра с сохраненением данных
+
+- summary: |
+    Проверка отображения модального окна с результатами завершенной игры
+  requirement: |
+    После завершения игры должно выводиться модальное окно с итогами
+  prerequisites: |
+  Под авторизованным пользователем создана игра
+  Level: 1
+    Game type: With a bot
+    Choose task: rect_area
+    Editor: const _ = require("lodash"); const R = require("rambda");
+const solution = (width, length) => { return width * length;
+};module.exports = solution;
+  test-data: |
+    no-data
+  steps:
+    - В области редактора кода ввести решение
+    - Нажать кнопку Run
+  expected-result: |
+    Откроется модальное окно с сообщением Woohoo, you're Champion!!!!! 
+    
+    
+
+
