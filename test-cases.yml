@@ -187,9 +187,7 @@
     Level: 1
     Game type: With a bot
     Choose task: rect_area
-    Editor: const _ = require("lodash"); const R = require("rambda");
-const solution = (width, length) => { return width * length;
-};module.exports = solution;
+    Editor: const _ = require("lodash"); const R = require("rambda"); const solution = (width, length) => { return width * length;};module.exports = solution;
   steps:
     - На главной странице нажать кнопку Create a game
     - Заполить поле Level 
