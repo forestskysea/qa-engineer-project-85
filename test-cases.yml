@@ -225,9 +225,7 @@
   Level: 1
     Game type: With a bot
     Choose task: rect_area
-    Editor: const _ = require("lodash"); const R = require("rambda");
-const solution = (width, length) => { return width * length;
-};module.exports = solution;
+    Editor: const _ = require("lodash"); const R = require("rambda");const solution = (width, length) => { return width * length;};module.exports = solution;
   test-data: |
     no-data
   steps:
