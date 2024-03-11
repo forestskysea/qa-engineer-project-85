@@ -21,6 +21,27 @@
     Произошел переход на сайт под зарегистрированным пользователем
 
 - summary: |
+    Проверка валидации поля email при регистрации
+  requirement: |
+    Сайт должен иметь возможность авторизации и регистрации
+  prerequisites: |
+    no-data
+  test-data: |
+    Nickname: Kkkljjjtt
+    Email: test@testtest
+    Password: 123456
+    Password Confirmation: 123456
+  steps:
+    - На главной странице без авторизации нажать кнопку Sign up
+    - Заполнить поле Nickname
+    - Заполнить поле Email 
+    - Заполнить поле Password 
+    - Заполнить поле Password Confirmation
+    - Нажать кнопку Submit
+  expected-result: |
+    Регистрация пользователя не произошла, у поля email ошибка Invalid email
+
+- summary: |
    Проверка входа пользователя с существующими логином и паролем
   requirement: |
     Сайт должен иметь возможность авторизации и регистрации
@@ -231,7 +252,87 @@
     - Нажать кнопку Run
   expected-result: |
     Откроется модальное окно с сообщением Woohoo, you're Champion!!!!! 
+
+- summary: |
+    Проверка создания турнира
+  requirement: |
+    На сайте должна быть возможность создавать турниры
+  prerequisites: |
+    no-data
+  test-data: |
+   no-data
+  steps:
+    - В шапке сайта развернуть меню профиля
+    - Перейти в раздел Tournaments
+    - В нижней части страницы в блоке Create a tournament нажать кнопку Create
+  expected-result: |
+    Откроется страница с созданным туром
     
+- summary: |
+    Проверка создания турнира
+  requirement: |
+    На сайте должна быть возможность создавать турниры
+  prerequisites: |
+    no-data
+  test-data: |
+   no-data
+  steps:
+    - В шапке сайта развернуть меню профиля
+    - Перейти в раздел Tournaments
+    - В нижней части страницы в блоке Create a tournament нажать кнопку Create
+  expected-result: |
+    Откроется страница с созданным турниром
+
+- summary: |
+    Проверка запуска игры с ботом в турнире
+  requirement: |
+    На сайте должна быть возможность создавать турниры
+  prerequisites: |
+    Открыто окно турнира
+  test-data: |
+   no-data
+  steps:
+    - Нажать кнопку Join
+    - Нажать кнопку Start
+    - Нажать кнопку Confirm
+    - Нажать кнопку Open
+  expected-result: |
+    Откроется окно с игрой с ботом
+
+- summary: |
+    Проверка чата на xxs-уязвимость
+  requirement: |
+    Сайт должен быть безопасным и защищать данные пользователя
+  prerequisites: |
+    Под авторизованным пользователем открыта главная страница
+  test-data: |
+   <strong>Word</strong>
+  steps:
+    - В поле ввода в чате ввести текст из test-data
+    - Нажать кнопку Send
+  expected-result: |
+    Отправленный текст не был преобразован
+
+- summary: |
+    Проверка отправки личного сообщения пользователю
+  requirement: |
+    На сайте можно отправить личное сообщение
+  prerequisites: |
+    Выполнено две авторизации под разными пользователями
+  test-data: |
+  Nickname: chatfortest
+  email: hex@let.io
+  password: 123456
+  steps:
+    - В блоке Online players нажать на пользователя chatfortest
+    - Выбрать Direct message
+    - В поле ввода в чате ввести любой текст
+    - Нажать кнопку Send
+    - Зайти на главную страницу под пользователем из test-data
+  expected-result: |
+   Сообщение было отправлено выбранному пользователю с пометкой [private]
+
+   
     
 
-
+    
