@@ -62,7 +62,7 @@
     Проверка входа пользователя с несуществующими email
   requirement: |
     Сайт должен иметь возможность авторизации и регистрации
-  prerequisites:
+  prerequisites: |
     Открыта страница авторизации https://codebattle.hexlet.io/session/new?locale=en&next=%2F
   test-data: |
     Email test@teeeeeesttest.kdsugflgkuwglfkj Пароль = 123456
