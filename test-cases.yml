@@ -128,6 +128,7 @@
   requirement: |
     На сайте должна быть возможность создавать игры без регистрации
   prerequisites: |
+    no-data
   test-data: |
     no-data
   steps:
@@ -320,9 +321,9 @@
   prerequisites: |
     Выполнено две авторизации под разными пользователями
   test-data: |
-  Nickname: chatfortest
-  email: hex@let.io
-  password: 123456
+    Nickname: chatfortest
+    email: hex@let.io
+    password: 123456
   steps:
     - В блоке Online players нажать на пользователя chatfortest
     - Выбрать Direct message
