@@ -6,10 +6,7 @@
   prerequisites: |
     no-data
   test-data: |
-    Nickname: Kkkljjjtt
-    Email: test@test.test
-    Password: 123456
-    Password Confirmation: 123456
+    no-data
   steps:
     - На главной странице без авторизации нажать кнопку Sign up
     - Заполнить поле Nickname
@@ -27,14 +24,11 @@
   prerequisites: |
     no-data
   test-data: |
-    Nickname: Kkkljjjtt
-    Email: test@testtest
-    Password: 123456
-    Password Confirmation: 123456
+    no-data
   steps:
     - На главной странице без авторизации нажать кнопку Sign up
     - Заполнить поле Nickname
-    - Заполнить поле Email 
+    - Заполнить поле Email в формате name@text, например test@test
     - Заполнить поле Password 
     - Заполнить поле Password Confirmation
     - Нажать кнопку Submit
@@ -42,11 +36,11 @@
     Регистрация пользователя не произошла, у поля email ошибка Invalid email
 
 - summary: |
-   Проверка входа пользователя с существующими логином и паролем
+   Проверка успешной авторизации
   requirement: |
     Сайт должен иметь возможность авторизации и регистрации
   prerequisites: |
-    Открыта страница авторизации https://codebattle.hexlet.io/session/new?locale=en&next=%2F
+    Открыта страница авторизации
   test-data: |
     Email: test@test.test
     Password: 123456
@@ -55,15 +49,14 @@
     - Заполнить поле пароль
     - Нажать кнопку «Submit»
   expected-result: |
-    Пользователь должен попасть на главную страницу
-
+    Пользователь успешно авторизован
 
 - summary: |
-    Проверка входа пользователя с несуществующими email
+    Проверка авторизации незарегистрированного пользователя
   requirement: |
     Сайт должен иметь возможность авторизации и регистрации
   prerequisites: |
-    Открыта страница авторизации https://codebattle.hexlet.io/session/new?locale=en&next=%2F
+    Открыта страница авторизации
   test-data: |
     Email test@teeeeeesttest.kdsugflgkuwglfkj Пароль = 123456
   steps:
@@ -71,31 +64,10 @@
     - Заполнить поле пароль
     - Нажать кнопку «Submit»
   expected-result: |
-    Вход на сайт не осуществляется, выводится сообщение об ошибке EMAIL_NOT_FOUND
+   Пользователь не авторизован и видит ошибку EMAIL_NOT_FOUND
 
 - summary: |
-    Проверка валидации поля Nickname при регистрации
-  requirement: |
-    Сайт должен иметь возможность авторизации и регистрации
-  prerequisites: |
-    no-data
-  test-data: |
-    Nickname: Kkkljjjtt)
-    Email: test@test.test
-    Password: 123456
-    Password Confirmation: 123456
-  steps:
-    - На главной странице без авторизации нажать кнопку Sign up
-    - Заполнить поле Nickname
-    - Заполнить поле Email 
-    - Заполнить поле Password 
-    - В поле Password Confirmation продублировать пароль из поля Password
-    - Нажать кнопку Submit
-  expected-result: |
-    Произошел переход на сайт под зарегистрированным пользователем
-
-- summary: |
-    Проверка регистрации пользователя через Github
+    Проверка сквозной авторизации через Github
   requirement: |
     Сайт должен иметь возможность авторизации и регистрации через Github и Discord
   prerequisites: |
@@ -106,10 +78,10 @@
     - На главной странице без авторизации нажать кнопку Sign up или Sign in
     - Нажать кнопку Sign in with Github
   expected-result: |
-    Произошел переход на сайт под зарегистрированным пользователем
+    Пользователь успешно авторизован через GitHub
 
 - summary: |
-    Проверка регистрации пользователя через Discord
+     Проверка сквозной авторизации через Discord
   requirement: |
     Сайт должен иметь возможность авторизации и регистрации через Github и Discord
   prerequisites: |
@@ -121,14 +93,14 @@
     - Нажать кнопку Sign in with Discord
     - Нажать кнопку Авторизовать
   expected-result: |
-    Произошел переход на сайт под зарегистрированным пользователем
+    Пользователь успешно авторизован через Discord
 
 - summary: |
     Проверка создания игр без регистрации
   requirement: |
     На сайте должна быть возможность создавать игры без регистрации
   prerequisites: |
-    no-data
+    Пользователь не авторизован
   test-data: |
     no-data
   steps:
@@ -137,7 +109,7 @@
     Произошел переход на страницу с игрой
 
 - summary: |
-    Проверка создания игры под авторизованным пользователем
+    Проверка создания игры с ботом
   requirement: |
     На сайте должна быть возможность создавать игру
   prerequisites: |
@@ -200,7 +172,7 @@
     Открывается сраница со статистикой по играм 
 
 - summary: |
-    Проверка функционала кнопки Run в игре с верным решением
+    Проверка победы в игре с ботом
   requirement: |
     Каждый игрок должен иметь возможность проверки своего решения
   prerequisites: |
@@ -212,7 +184,6 @@
     Editor: const _ = require("lodash"); const R = require("rambda"); const solution = (width, length) => { return width * length;};module.exports = solution;
   steps:
     - На главной странице нажать кнопку Create a game
-    - Заполить поле Level 
     - Заполить поле Game type 
     - Заполить поле Choose task
     - Нажать кнопку Create battle
@@ -221,7 +192,7 @@
     - Закрыть модальное окно с сообщением о победе
     - Открыть вкладку Output
   expected-result: |
-    На вкладке Output отображается сообщение "Yay! All tests passed!!111" с разультатами проверки
+    Пользователь победил и видит окно с текстом "Yay! All tests passed!!111" с разультатами проверки
 
 - summary: |
     Проверка повторного подключения к игре
@@ -253,21 +224,6 @@
     - Нажать кнопку Run
   expected-result: |
     Откроется модальное окно с сообщением Woohoo, you're Champion!!!!! 
-
-- summary: |
-    Проверка создания турнира
-  requirement: |
-    На сайте должна быть возможность создавать турниры
-  prerequisites: |
-    no-data
-  test-data: |
-   no-data
-  steps:
-    - В шапке сайта развернуть меню профиля
-    - Перейти в раздел Tournaments
-    - В нижней части страницы в блоке Create a tournament нажать кнопку Create
-  expected-result: |
-    Откроется страница с созданным туром
     
 - summary: |
     Проверка создания турнира
@@ -301,20 +257,6 @@
     Откроется окно с игрой с ботом
 
 - summary: |
-    Проверка чата на xxs-уязвимость
-  requirement: |
-    Сайт должен быть безопасным и защищать данные пользователя
-  prerequisites: |
-    Под авторизованным пользователем открыта главная страница
-  test-data: |
-   <strong>Word</strong>
-  steps:
-    - В поле ввода в чате ввести текст из test-data
-    - Нажать кнопку Send
-  expected-result: |
-    Отправленный текст не был преобразован
-
-- summary: |
     Проверка отправки личного сообщения пользователю
   requirement: |
     На сайте можно отправить личное сообщение
@@ -332,8 +274,3 @@
     - Зайти на главную страницу под пользователем из test-data
   expected-result: |
    Сообщение было отправлено выбранному пользователю с пометкой [private]
-
-   
-    
-
-    
